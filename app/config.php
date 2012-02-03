@@ -1,5 +1,5 @@
 <?php
 
-$env->pushConfig(array(
-	'useEtags' => true
-));
+return array(
+    'useEtags' => true
+);
