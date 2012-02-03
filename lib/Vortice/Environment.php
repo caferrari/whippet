@@ -5,6 +5,8 @@ namespace Vortice;
 class Environment
 {
     
+    var $pars = array();
+    
     public function __construct(array $server){
         $this->root = str_replace(
                             'lib/bootstrap.php', 
@@ -16,12 +18,11 @@ class Environment
                             '/',
                             $this->root);
         
-        list($this->uri, $this->pars) = explode('?', preg_replace(
+        list($this->uri) = explode('?', preg_replace(
                             "@^{$this->virtualroot}@", 
                             '', 
                             $server['REQUEST_URI']));
-
-        parse_str($this->pars, $this->pars);
+        parse_str($server['QUERY_STRING'], $this->pars);
                             
         $this->method = $server['REQUEST_METHOD'];
     }
