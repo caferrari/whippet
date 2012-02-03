@@ -1,7 +1,5 @@
 <?php
 
-$config = array(
-    
-    'dispatcher' => 'Default'
-    
-);
+$env->pushConfig(array(
+	'useEtags' => true
+));

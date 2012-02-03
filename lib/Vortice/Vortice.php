@@ -5,7 +5,10 @@ namespace Vortice;
 class Vortice
 {
 
+    private static $startTime;
+    
     public function __construct($environment){
+        self::$startTime = microtime(true);
         $exception = new Exception();
         $exception->register();
         $this->environment = $environment;
@@ -20,4 +23,7 @@ class Vortice
         $request->render();
     }
     
+    public static function getExecutionTime(){
+        return microtime(true) - self::$startTime;
+    }
 }

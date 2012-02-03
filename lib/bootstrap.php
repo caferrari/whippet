@@ -10,5 +10,8 @@ $loader = new SplClassLoader('Controller', '../app');
 $loader->register();
 
 $env = new Vortice\Environment($_SERVER);
+
+include('../app/config.php');
+
 $vortice = new Vortice\Vortice($env);
 $vortice->execute();

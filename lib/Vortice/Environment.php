@@ -30,4 +30,13 @@ class Environment
     {
         return str_replace('//', '/', "/$str/");
     }
+    
+    public function pushConfig(array $configs){
+        
+        $default = array(
+            'useEtags' => false
+        );
+        
+        $this->config = (object)array_merge($default, $configs);
+    }
 }
