@@ -1,15 +1,14 @@
 <?php
 
 require_once 'functions.php';
-require_once 'Vortice/Common/Loader.php';
+require_once 'SplClassLoader.php';
 
-$loader = new Vortice\Common\Loader();
-$loader->register('Zend', './Zend/');
-$loader->register('Application', '../app/', 'Application\\');
-$loader->register('Vortice', './');
+$loader = new SplClassLoader('Vortice', './');
+$loader->register();
+
+$loader = new SplClassLoader('Controller', '../app');
+$loader->register();
 
 $env = new Vortice\Environment($_SERVER);
-
 $vortice = new Vortice\Vortice($env);
-
 $vortice->execute();

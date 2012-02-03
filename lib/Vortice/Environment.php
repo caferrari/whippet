@@ -16,30 +16,14 @@ class Environment
                             '/',
                             $this->root);
         
-        $this->uri = preg_replace(
+        list($this->uri, $this->pars) = explode('?', preg_replace(
                             "@^{$this->virtualroot}@", 
                             '', 
-                            $server['REQUEST_URI']);
+                            $server['REQUEST_URI']));
+
+        parse_str($this->pars, $this->pars);
                             
         $this->method = $server['REQUEST_METHOD'];
-        
-        $parts = $this->uri ? explode('/', $this->uri) : array();
-        $controller = $action = 'index';
-        $part = reset($parts);
-        if ($part && !$this->isParameter($part)){
-            $controller = array_shift($parts);
-            $part = reset($parts);
-            if ($part && !$this->isParameter($part))
-                $action = array_shift($parts);
-        }
-        
-        $this->controller = $controller;
-        $this->action     = $action;
-    }
-    
-    public function isParameter($str)
-    {
-        return preg_match('@^([a-z0-9_-]+:[a-z0-9_-]*)$@', $str);
     }
     
     public function addSlashes($str)

@@ -32,3 +32,13 @@ function camelize($str='') {
 function uncamelize($str=''){
 	return preg_replace('@^_+|_+$@', '', strtolower(preg_replace("/([A-Z])/", "_$1", $str)));
 }
+
+/**
+* Dump some variable
+* @param	$var		mixed
+* @return	void
+*/
+function d($var){
+    var_dump($var);
+    die();
+}

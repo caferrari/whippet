@@ -3,23 +3,23 @@
 namespace Vortice;
 
 use Vortice\Request,
-    Vortice\Environment;
-
+    Vortice\Environment,
+    Vortice\Route;
+    
 class Dispatcher
 {
     
     public function dispatch(Environment $env)
     {
-        $controllerClass = camelize($env->controller) . 'Controller';
-        $controllerMethod = $env->action;
+        $route = new Route();
+        $request = $route->getRequest($env->uri);
+        $request->addPars($env->pars);
         
-        $class = "Application\\Controller\\{$controllerClass}";
-        
-        $c = new $class();
-        $c->$controllerMethod();
-        
+        try{
+            $request->execute();
+            return $request;
+        } catch (Exception $e){
+            die ($e);
+        }
     }
-    
-    
-    
 }

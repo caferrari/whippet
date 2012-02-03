@@ -1,10 +1,30 @@
 <?php
 
+/**
+ * Simple loader class
+ *
+ * Usage:
+ * $loader = new Vortice\Common\Loader();
+ * $loader->register('Zend', './Zend/');
+ * $loader->register('Application', '../app/', 'Application\\');
+ * $loader->register('Vortice', './');
+ *
+ * @author	Carlos André Ferrari <carlos@ferrari.eti.br>
+ */
+ 
 namespace Vortice\Common;
 
 class Loader
 {
     
+    /**
+	* Register a new namespace
+	*
+	* @var		string
+	* @var		string
+	* @var		string
+	* @access	public
+	*/
     public function register($namespace, $folder, $remove = '')
     {
         spl_autoload_register(
