@@ -35,7 +35,9 @@ class Environment
     public function pushConfig(array $configs){
         
         $default = array(
-            'useEtags' => false
+            'useEtags' => false,
+            'frontController' => false,
+            'viewEngine' => 'phtml'
         );
         
         $this->config = (object)array_merge($default, $configs);

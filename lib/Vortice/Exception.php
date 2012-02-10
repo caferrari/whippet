@@ -11,7 +11,7 @@ class Exception extends \ErrorException
 
     public function handler($errno, $errstr, $errfile, $errline){
         header('Content-Type: text/plain');
-        throw new Exception($errstr, $errno, 0, $errfile, $errline);
+        throw new self($errstr, $errno, 0, $errfile, $errline);
     }
     
 }

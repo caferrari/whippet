@@ -13,6 +13,7 @@ class Dispatcher
     {
         $route = new Route();
         $request = $route->getRequest($env->uri);
+        $request->primary = true;
         $request->addPars($env->pars);
         
         try{

@@ -12,6 +12,8 @@ class Request
     var $action     = 'index';
     var $pars       = array();
     var $responseCode = 200;
+    var $renderFormat = 'html';
+    var $primary = false;
     
     public function __construct($controller, $action, array $pars = array()){
         $this->controller = $controller;
@@ -30,29 +32,13 @@ class Request
 
         $class = "Controller\\{$controllerClass}";
         
-        ob_start();
-        $c = new $class();
+        $c = new $class($this);
         $c->$controllerMethod();
-        return $this->html = ob_get_flush();
-    }
-    
-    private function checkEtag(){
-        if ($this->env || $this->env->config->useEtags) {
-            $etag = sha1($this->html);
-            if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && 
-                        $_SERVER['HTTP_IF_NONE_MATCH']==$etag) {
-                header('HTTP/1.0 304 Not Modified'); 
-                return true;
-            }
-            header('Etag: ' . $etag);
-        }
-        return false;
     }
     
     public function render(){
-        if (!$this->checkEtag()){
-            header('Vortice-LoadTime:' . Vortice::getExecutionTime());
-            echo $this->html;
-        }
+        $render = new Render($this);
+        return $render->render();
     }
+    
 }
