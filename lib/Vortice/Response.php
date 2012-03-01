@@ -50,7 +50,10 @@ class Response
 
     public function render(){
 		$render = new Render();
-        $this->output = $render->render($this);
+        $this->checkEtag();
+        $this->setResponseCode();
+        $this->renderHeaders();
+        return $this->output = $render->render($this);
     }
 
     public function setResponseCode(){
@@ -58,10 +61,6 @@ class Response
     }
 
     public function __toString(){
-    	$this->render();
-    	$this->checkEtag();
-    	$this->setResponseCode();
-    	$this->renderHeaders();
     	return $this->output;
     }
 

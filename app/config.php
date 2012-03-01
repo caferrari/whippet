@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'useEtags' => true,
+    'useEtags' => false,
     'frontController' => 'MasterController',
     'viewEngine' => 'phtml' // php, phtml for now
 );

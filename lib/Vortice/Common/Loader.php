@@ -32,7 +32,8 @@ class Loader
                 if (false == strstr($classname, $namespace)) return;
                 $classname = str_replace($remove, '', $classname);
                 $file = str_replace('\\', DIRECTORY_SEPARATOR, $classname);
-                require_once $folder . $file . '.php';
+                if (file_exists($folder . $file . '.php'))
+                    require_once $folder . $file . '.php';
             }
         );
     }

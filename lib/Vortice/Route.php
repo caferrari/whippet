@@ -23,19 +23,21 @@ class Route
         }
         return $this->defaultRoute($uri);
     }
-    
+
     private function defaultRoute($uri){
         $parts = $uri ? explode('/', $uri) : array();
-        $controller = $action = 'index';
-        $part = reset($parts);
-        if ($part && !$this->isParameter($part)){
-            $controller = array_shift($parts);
-            $part = reset($parts);
-            if ($part && !$this->isParameter($part))
-                $action = array_shift($parts);
+        $path = array('index', 'index');
+
+        foreach ($parts as $k => $part){
+            if ($this->isParameter($part))
+                break;
+            $path[$k] = array_shift($parts);
         }
 
-        return new Request($controller, $action, 
+        //$action = lcfirst(camelize(end($path)));
+        $path = implode('\\', array_map(function($val){ return camelize($val); }, $path));
+
+        return new Request($path, 
                         $this->extractParameters(implode('/', $parts))
                    );
     }

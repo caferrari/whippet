@@ -6,6 +6,7 @@ class Environment
 {
     
     var $pars = array();
+    var $config = array();
     
     public function __construct(array $server){
         $this->root = str_replace(
@@ -22,6 +23,7 @@ class Environment
                             "@^{$this->virtualroot}@", 
                             '', 
                             $server['REQUEST_URI']));
+        $this->uri = trim($this->uri, '/');
         parse_str($server['QUERY_STRING'], $this->pars);
                             
         $this->method = $server['REQUEST_METHOD'];

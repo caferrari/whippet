@@ -26,7 +26,7 @@ class Vortice
         $dispatcher = new Dispatcher();
         $response = $dispatcher->dispatch($this->environment);
         ob_end_clean();
-        echo $response;
+        echo $response->render();
     }
     
     public static function getExecutionTime(){
