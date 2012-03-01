@@ -8,6 +8,7 @@ class Vortice
     private static $startTime;
     
     public function __construct($environment){
+        header('Content-Type: text/plain;');
         self::$startTime = microtime(true);
         
         if (!defined('root')) define('root', $environment->root);
@@ -23,9 +24,9 @@ class Vortice
     {
         ob_start();
         $dispatcher = new Dispatcher();
-        $request = $dispatcher->dispatch($this->environment);
-        ob_get_clean();
-        echo $request->render();
+        $response = $dispatcher->dispatch($this->environment);
+        ob_end_clean();
+        echo $response;
     }
     
     public static function getExecutionTime(){

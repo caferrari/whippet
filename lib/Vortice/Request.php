@@ -3,22 +3,24 @@
 namespace Vortice;
 
 use Vortice\Vortice,
-    Vortice\Environment;
-
+    Vortice\Environment,
+    Vortice\Response,
+    Vortice\Exception\ControllerNotFoundException,
+    Vortice\Exception\ActionNotFoundException;
 class Request
 {
     
     var $controller = 'index';
     var $action     = 'index';
     var $pars       = array();
-    var $responseCode = 200;
-    var $renderFormat = 'html';
     var $primary = false;
+    var $response;
     
     public function __construct($controller, $action, array $pars = array()){
         $this->controller = $controller;
         $this->action = $action;
         $this->pars = $pars;
+        $this->response = new Response($this);
     }
     
     public function addPars(array $pars){
@@ -31,14 +33,16 @@ class Request
         $controllerMethod = $this->action;
 
         $class = "Controller\\{$controllerClass}";
-        
+        if (!class_exists($class))
+            throw new ControllerNotFoundException("Controller {$this->controller} not found");
+
         $c = new $class($this);
+        if (!method_exists($c, $controllerMethod))
+            throw new ActionNotFoundException("Action {$this->action} not found");
+        
         $c->$controllerMethod();
-    }
-    
-    public function render(){
-        $render = new Render($this);
-        return $render->render();
+
+        return $this->response;
     }
     
 }

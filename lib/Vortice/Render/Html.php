@@ -4,16 +4,16 @@ namespace Vortice\Render;
 
 use Vortice\Render\Renderizable,
     Vortice\Request,
+    Vortice\Response,
     Vortice\Controller,
     Vortice\Exception\ViewNotFoundException;
 
 class Html implements Renderizable 
 {
-    public function render(Request $request){
-        if ($request->primary){
-            header ('Content-type: text/html; charset=utf-8');
-        }
-        
+    public function render(Request $request, Response $response){
+        if ($request->primary)
+            $response->addHeader('Content-type', 'text/html; charset=utf-8');
+
         ob_start();
         
         $view = "{$request->controller}/{$request->action}." . $request->env->config->viewEngine;

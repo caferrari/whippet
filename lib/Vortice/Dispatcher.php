@@ -17,10 +17,9 @@ class Dispatcher
         $request->addPars($env->pars);
         
         try{
-            $request->execute($env);
-            return $request;
+            return $request->execute($env);
         } catch (Exception $e){
-            die ($e);
+            throw $e;
         }
     }
 }
