@@ -1,6 +1,6 @@
 <?php
 
-namespace Controller;
+namespace Application\Controller;
 
 class TesteController extends \Vortice\Controller
 {

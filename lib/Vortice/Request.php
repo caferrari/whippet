@@ -32,7 +32,7 @@ class Request
         $controllerClass = camelize($this->controller) . 'Controller';
         $controllerMethod = $this->action;
 
-        $class = "Controller\\{$controllerClass}";
+        $class = "Application\\Controller\\{$controllerClass}";
         if (!class_exists($class))
             throw new ControllerNotFoundException("Controller {$this->controller} not found");
 
