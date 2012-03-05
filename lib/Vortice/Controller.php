@@ -19,12 +19,10 @@ abstract class Controller
     }
 
     public function __get($var){
-    	switch (true){
-
-    		case $var == 'pars':
-    			return (object)$this->request->pars;
-
-    	}
+        switch (true){
+            case $var == 'pars':
+                return (object)$this->request->pars;
+        }
     }
     
 }

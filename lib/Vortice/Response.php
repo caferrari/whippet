@@ -17,7 +17,7 @@ class Response
 	var $headers = array();
 	var $output = '';
 
-	public function __construct(Request $request){
+    public function __construct(Request $request){
 		$this->request = $request;
         $this->addHeader('Content-Type', 'text/html; charset=utf-8');
 	}
