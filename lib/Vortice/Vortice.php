@@ -24,7 +24,7 @@ class Vortice
     {
         ob_start();
         $dispatcher = new Dispatcher();
-        $response = $dispatcher->dispatch($this->environment);
+        $response = $dispatcher($this->environment);
         ob_end_clean();
         echo $response->render();
     }

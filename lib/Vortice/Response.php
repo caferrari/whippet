@@ -19,6 +19,7 @@ class Response
 
 	public function __construct(Request $request){
 		$this->request = $request;
+        $this->addHeader('Content-Type', 'text/html; charset=utf-8');
 	}
 
 	public function addHeader($name, $value){
@@ -44,8 +45,12 @@ class Response
     }
 
     public function renderHeaders(){
-    	foreach ($this->headers as $header => $value)
+        if (!$this->request->primary) return;
+
+        foreach ($this->headers as $header => $value)
     		header("$header: $value");
+
+        header('Vortice-LoadTime:' . Vortice::getExecutionTime());
     }
 
     public function render(){
@@ -58,10 +63,6 @@ class Response
 
     public function setResponseCode(){
     	new Code($this->code);
-    }
-
-    public function __toString(){
-    	return $this->output;
     }
 
 }

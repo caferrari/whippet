@@ -34,7 +34,6 @@ class Route
             $path[$k] = array_shift($parts);
         }
 
-        //$action = lcfirst(camelize(end($path)));
         $path = implode('\\', array_map(function($val){ return camelize($val); }, $path));
 
         return new Request($path, 
@@ -47,14 +46,14 @@ class Route
         preg_match_all('@([a-z0-9A-Z]+):([^/]+)@', $uri, $match, PREG_SET_ORDER);
         foreach ($match as $mat){
             list(, $name, $value) = $mat;
-            $pars[$name] = $value;
+            $pars[$name] = rawurldecode($value);
         }
         return $pars;
     }
     
     private function isParameter($str)
     {
-        return preg_match('@^([a-z0-9_-]+:[a-z0-9_-]*)$@', $str);
+        return !preg_match('@^([a-zA-Z0-9_-])$@', $str) && strstr($str, ':');
     }
     
 }

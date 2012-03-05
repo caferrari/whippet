@@ -17,5 +17,14 @@ abstract class Controller
     public function __set($var, $value){
         self::$vars[$var] = $value;
     }
+
+    public function __get($var){
+    	switch (true){
+
+    		case $var == 'pars':
+    			return (object)$this->request->pars;
+
+    	}
+    }
     
 }

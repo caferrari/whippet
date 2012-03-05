@@ -6,7 +6,7 @@ class TesteController extends \Vortice\Controller
 {
     
     public function index(){
-        $this->nome = 'Carlos André Ferrari';
+        $this->nome = $this->pars->nome;
     }
     
 }

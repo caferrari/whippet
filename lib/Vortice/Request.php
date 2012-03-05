@@ -7,6 +7,7 @@ use Vortice\Vortice,
     Vortice\Response,
     Vortice\Exception\ControllerNotFoundException,
     Vortice\Exception\ActionNotFoundException;
+
 class Request
 {
     
@@ -34,7 +35,6 @@ class Request
             $action = lcfirst(camelize(substr($path, $lastPart+1)));
             $path = substr($path, 0, $lastPart);
         }
-
         $this->controller = $path . 'Controller';
         $this->action = $action;
     }
@@ -52,6 +52,7 @@ class Request
             throw new ActionNotFoundException("Action {$this->action} not found");
         
         $c = new $class($this);
+        $c->pars = (object)$this->pars;
         $c->$controllerMethod();
 
         return $this->response;
