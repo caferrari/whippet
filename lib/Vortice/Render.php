@@ -5,7 +5,7 @@ namespace Vortice;
 use Vortice\Response,
     Vortice\Exception\InvalidRenderFormatException;
 
-class Render 
+class Render
 {
 
     public function render(Response $response){
@@ -17,5 +17,5 @@ class Render
         $renderObject = new $class();
         return $renderObject->render($response->request, $response);
     }
-    
+
 }

@@ -4,22 +4,22 @@ namespace Vortice;
 
 use Vortice\Request;
 
-class Route 
+class Route
 {
-    
+
     private static $routes = array();
-    
+
     public function __construct(){
-        
+
     }
 
     public static function add($regex, Request $target){
         self::$routes[$regex] = $target;
     }
-    
+
     public function getRequest($uri){
         foreach (self::$routes as $r){
-            
+
         }
         return $this->defaultRoute($uri);
     }
@@ -36,11 +36,11 @@ class Route
 
         $path = implode('\\', array_map(function($val){ return camelize($val); }, $path));
 
-        return new Request($path, 
+        return new Request($path,
                         $this->extractParameters(implode('/', $parts))
                    );
     }
-    
+
     private function extractParameters($uri){
         $pars = array();
         preg_match_all('@([a-z0-9A-Z]+):([^/]+)@', $uri, $match, PREG_SET_ORDER);
@@ -50,10 +50,10 @@ class Route
         }
         return $pars;
     }
-    
+
     private function isParameter($str)
     {
         return !preg_match('@^([a-zA-Z0-9_-])$@', $str) && strstr($str, ':');
     }
-    
+
 }

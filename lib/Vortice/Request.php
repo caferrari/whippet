@@ -10,23 +10,23 @@ use Vortice\Vortice,
 
 class Request
 {
-    
+
     var $controller = 'index';
     var $action     = 'index';
     var $pars       = array();
     var $primary = false;
     var $response;
-    
+
     public function __construct($path, array $pars = array()){
         $this->parsePath($path);
         $this->pars = $pars;
         $this->response = new Response($this);
     }
-    
+
     public function addPars(array $pars){
         $this->pars = array_merge($this->pars, $pars);
     }
-    
+
     public function parsePath($path){
         $class = "Application\\Controller\\{$path}";
         $action = 'index';
@@ -50,12 +50,12 @@ class Request
 
         if (!method_exists($class, $controllerMethod))
             throw new ActionNotFoundException("Action {$this->action} not found");
-        
+
         $c = new $class($this);
         $c->pars = (object)$this->pars;
         $c->$controllerMethod();
 
         return $this->response;
     }
-    
+
 }

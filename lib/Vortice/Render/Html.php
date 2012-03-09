@@ -8,7 +8,7 @@ use Vortice\Render\Renderizable,
     Vortice\Controller,
     Vortice\Exception\ViewNotFoundException;
 
-class Html implements Renderizable 
+class Html implements Renderizable
 {
 
     public function buildViewPath($view){
@@ -23,18 +23,18 @@ class Html implements Renderizable
             $response->addHeader('Content-type', 'text/html; charset=utf-8');
 
         ob_start();
-        
+
         $view = "{$request->controller}/{$request->action}." . $request->env->config->viewEngine;
         $view = $this->buildViewPath($view);
         $viewfile = root . 'app/view/' . $view;
-        
+
         if (!file_exists($viewfile))
             throw new ViewNotFoundException("View \"$view\" not found");
 
         extract(Controller::$vars);
         include $viewfile;
-        
+
         return ob_get_clean();
     }
-    
+
 }

@@ -11,18 +11,18 @@ use Vortice\Vortice,
 class Response
 {
 
-	var $request;
-	var $code = 200;
-	var $format = 'html';
-	var $headers = array();
-	var $output = '';
+    var $request;
+    var $code = 200;
+    var $format = 'html';
+    var $headers = array();
+    var $output = '';
 
     public function __construct(Request $request){
-		$this->request = $request;
+        $this->request = $request;
         $this->addHeader('Content-Type', 'text/html; charset=utf-8');
-	}
+    }
 
-	public function addHeader($name, $value){
+    public function addHeader($name, $value){
         $this->headers[$name] = $value;
     }
 
@@ -33,7 +33,7 @@ class Response
 
     private function checkEtag(){
         if (!$this->request->env->config->useEtags)
-        	return;
+            return;
 
         $etag = sha1($this->output);
         if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && $_SERVER['HTTP_IF_NONE_MATCH']==$etag){
@@ -48,13 +48,13 @@ class Response
         if (!$this->request->primary) return;
 
         foreach ($this->headers as $header => $value)
-    		header("$header: $value");
+            header("$header: $value");
 
         header('Vortice-LoadTime:' . Vortice::getExecutionTime());
     }
 
     public function render(){
-		$render = new Render();
+        $render = new Render();
         $this->checkEtag();
         $this->setResponseCode();
         $this->renderHeaders();
@@ -62,7 +62,7 @@ class Response
     }
 
     public function setResponseCode(){
-    	new Code($this->code);
+        new Code($this->code);
     }
 
 }
