@@ -27,6 +27,8 @@ abstract class Controller
         switch (true){
             case $var == 'pars':
                 return (object)$this->request->pars;
+            case (substr($var, -5) == 'Model'):
+                return DataSource::inject(substr($var, 0, -5));
         }
     }
 

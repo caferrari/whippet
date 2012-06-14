@@ -6,11 +6,7 @@ class TesteController extends \Vortice\Controller
 {
 
     public function index(){
-
-        $userModel = $this->loadModel("user");
-
-        d($userModel->all());
-
+        d($this->userModel->all());
         $this->nome = $this->pars->nome;
     }
 
