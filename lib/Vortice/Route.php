@@ -18,7 +18,7 @@ class Route
     }
 
     public function getRequest($uri){
-        foreach (self::$routes as $r){
+        foreach (self::$routes as $route){
 
         }
         return $this->defaultRoute($uri);

@@ -8,7 +8,7 @@ use Vortice\Request,
 
 /**
  * Dispatch the request
- */  
+ */
 class Dispatcher
 {
     public function __invoke(Environment $env){

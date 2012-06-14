@@ -7,7 +7,7 @@ use Vortice\Vortice,
     Vortice\Render,
     Vortice\Request,
     Vortice\Response\Code;
-   
+
 class Response
 {
 
@@ -40,7 +40,7 @@ class Response
             $this->code = 304;
             $this->output = '';
         }
-        
+
         $this->addHeader('Etag', $etag);
     }
 

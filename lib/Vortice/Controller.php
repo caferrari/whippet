@@ -2,18 +2,23 @@
 
 namespace Vortice;
 
-use Vortice\Request;
+use Vortice\Request,
+    Vortice\DataSource;
 
 abstract class Controller
 {
-    
+
     static $vars = array();
     var $request;
-    
-    public final function __construct(Request $request){ 
+
+    public final function __construct(Request $request){
         $this->request = $request;
     }
-    
+
+    public function loadModel($name){
+        return DataSource::inject($name);
+    }
+
     public function __set($var, $value){
         self::$vars[$var] = $value;
     }
@@ -24,5 +29,5 @@ abstract class Controller
                 return (object)$this->request->pars;
         }
     }
-    
+
 }

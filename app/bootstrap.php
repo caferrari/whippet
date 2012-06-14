@@ -1,3 +1,7 @@
 <?php
 
-// configure your vendor`s autoload here!
+namespace Application;
+
+use Vortice\DataSource;
+
+DataSource::add('db', array('nome' => 'Eu sou um DataSource'));
