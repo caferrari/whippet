@@ -8,10 +8,10 @@ $loader = new Vortice\Common\Loader;
 $loader->register('Application', '../app/', 'Application\\');
 $loader->register('Vortice', './');
 
-$env = new Vortice\Environment($_SERVER);
-$env->pushConfig(include('../app/config.php'));
+$config = include('../app/config.php');
 
 require_once '../app/bootstrap.php';
 
-$vortice = new Vortice\Vortice($env);
-$vortice->execute();
+$dispatcher = new Vortice\DI\DispatcherFromHttp();
+$vortice = new Vortice\Vortice();
+$vortice->execute($dispatcher->inject($_SERVER, $config));

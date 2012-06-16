@@ -3,7 +3,6 @@
 namespace Vortice;
 
 use Vortice\Vortice,
-    Vortice\Environment,
     Vortice\Render,
     Vortice\Request,
     Vortice\Response\Code;
@@ -32,7 +31,7 @@ class Response
     }
 
     private function checkEtag(){
-        if (!$this->request->env->config->useEtags)
+        if (!$this->request->config->useEtags)
             return;
 
         $etag = sha1($this->output);
@@ -50,7 +49,7 @@ class Response
         foreach ($this->headers as $header => $value)
             header("$header: $value");
 
-        header('Vortice-LoadTime:' . Vortice::getExecutionTime());
+        header('Vortice-LoadTime:' . $this->request->fw->getExecutionTime());
     }
 
     public function render(){

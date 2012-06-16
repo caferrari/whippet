@@ -4,20 +4,34 @@ namespace Vortice;
 
 use Vortice\Request,
     Vortice\Environment,
-    Vortice\Route;
+    Vortice\Route,
+    Vortice\Vortice;
 
 /**
  * Dispatch the request
  */
 class Dispatcher
 {
-    public function __invoke(Environment $env){
+
+    private $request;
+
+    public function __construct($method, $url, $pars, $virtualRoot, $root, $config){
         $route = new Route();
-        $request = $route->getRequest($env->uri);
+        $request = $route->getRequest($url);
         $request->primary = true;
-        $request->addPars($env->pars);
+        $request->addPars($pars);
+        $request->method = $method;
+        $request->url = $url;
+        $request->virtualRoot = $virtualRoot;
+        $request->root = $root;
+        $request->config = $config;
+        $this->request = $request;
+    }
+
+    public function dispatch(Vortice $fw){
         try{
-            return $request->execute($env);
+            $this->request->fw = $fw;
+            return $this->request->execute();
         }catch (Exception $e){
             throw $e;
         }

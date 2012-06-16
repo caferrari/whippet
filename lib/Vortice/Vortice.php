@@ -2,34 +2,30 @@
 
 namespace Vortice;
 
+use Vortice\Dispatcher;
+
 class Vortice
 {
 
-    private static $startTime;
+    protected $startTime;
 
-    public function __construct($environment){
+    public function __construct(){
         header('Content-Type: text/plain;');
-        self::$startTime = microtime(true);
-
-        if (!defined('root')) define('root', $environment->root);
-        if (!defined('virtualroot')) define('virtualroot', $environment->root);
-        if (!defined('uri')) define('uri', $environment->uri);
+        $this->startTime = microtime(true);
 
         $exception = new Exception();
         $exception->register();
-        $this->environment = $environment;
     }
 
-    public function execute()
+    public function execute(Dispatcher $dispatcher)
     {
         ob_start();
-        $dispatcher = new Dispatcher();
-        $response = $dispatcher($this->environment);
+        $response = $dispatcher->dispatch($this);
         ob_end_clean();
         echo $response->render();
     }
 
-    public static function getExecutionTime(){
-        return microtime(true) - self::$startTime;
+    public function getExecutionTime(){
+        return microtime(true) - $this->startTime;
     }
 }

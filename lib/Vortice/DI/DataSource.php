@@ -1,6 +1,6 @@
 <?php
 
-namespace Vortice;
+namespace Vortice\DI;
 
 use Vortice\Exception\ModelNotFoundException;
 

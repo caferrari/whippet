@@ -2,6 +2,6 @@
 
 namespace Application;
 
-use Vortice\DataSource;
+use Vortice\DI\DataSource;
 
-DataSource::add('db', array('nome' => 'Eu sou um DataSource'));
+DataSource::add('db', (object)array('nome' => 'Fulano'));

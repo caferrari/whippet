@@ -11,6 +11,7 @@ use Vortice\Vortice,
 class Request
 {
 
+    var $path;
     var $controller = 'index';
     var $action     = 'index';
     var $pars       = array();
@@ -18,6 +19,7 @@ class Request
     var $response;
 
     public function __construct($path, array $pars = array()){
+        $this->path = $path;
         $this->parsePath($path);
         $this->pars = $pars;
         $this->response = new Response($this);
@@ -39,8 +41,7 @@ class Request
         $this->action = $action;
     }
 
-    public function execute($env = false){
-        $this->env = $env;
+    public function execute(){
         $controllerMethod = $this->action;
 
         $class = "Application\\Controller\\{$this->controller}";
@@ -52,6 +53,7 @@ class Request
             throw new ActionNotFoundException("Action {$this->action} not found");
 
         $c = new $class($this);
+        $c->request = $this;
         $c->pars = (object)$this->pars;
         $c->$controllerMethod();
 

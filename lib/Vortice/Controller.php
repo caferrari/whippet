@@ -3,7 +3,7 @@
 namespace Vortice;
 
 use Vortice\Request,
-    Vortice\DataSource;
+    Vortice\DI\DataSource;
 
 abstract class Controller
 {
