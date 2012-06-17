@@ -1,16 +1,13 @@
 <?php
 
-namespace Vortice\DI;
+namespace Vortice;
 
 use \Vortice\Dispatcher;
 
-class DispatcherFromHttp
+class DispatcherFactory
 {
 
-    var $pars = array();
-    var $config = array();
-
-    public function inject(array $server, array $config = array()){
+    public function fromHttp(array $server, array $config = array()){
 
         $config = $this->pushConfig($config);
         $root = str_replace(

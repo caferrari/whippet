@@ -12,6 +12,6 @@ $config = include('../app/config.php');
 
 require_once '../app/bootstrap.php';
 
-$dispatcher = new Vortice\DI\DispatcherFromHttp();
+$dispatcher = new Vortice\DispatcherFactory();
 $vortice = new Vortice\Vortice();
-$vortice->execute($dispatcher->inject($_SERVER, $config));
+$vortice->execute($dispatcher->fromHttp($_SERVER, $config));
