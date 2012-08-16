@@ -18,21 +18,24 @@ class Request
     var $primary = false;
     var $response;
 
-    public function __construct($path, array $pars = array()){
+    public function __construct($path, array $pars = array())
+    {
         $this->path = $path;
         $this->parsePath($path);
         $this->pars = $pars;
         $this->response = new Response($this);
     }
 
-    public function addPars(array $pars){
+    public function addPars(array $pars)
+    {
         $this->pars = array_merge($this->pars, $pars);
     }
 
-    public function parsePath($path){
+    public function parsePath($path)
+    {
         $class = "Application\\Controller\\{$path}";
         $action = 'index';
-        if (!class_exists($class . 'Controller')){
+        if (!class_exists($class . 'Controller')) {
             $lastPart = strrpos($path, '\\');
             $action = lcfirst(camelize(substr($path, $lastPart+1)));
             $path = substr($path, 0, $lastPart);
@@ -41,7 +44,8 @@ class Request
         $this->action = $action;
     }
 
-    public function execute(){
+    public function execute()
+    {
         $controllerMethod = $this->action;
 
         $class = "Application\\Controller\\{$this->controller}";

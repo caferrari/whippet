@@ -4,6 +4,7 @@ namespace Whippet\Exception;
 
 use Whippet\Exception;
 
-class ActionNotFoundException Extends Exception {
+class ActionNotFoundException Extends Exception
+{
 
 }

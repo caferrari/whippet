@@ -9,9 +9,9 @@ class Whippet
 
     protected $startTime;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->startTime = microtime(true);
-
         $exception = new Exception();
         $exception->register();
     }
@@ -24,7 +24,8 @@ class Whippet
         echo $response->render();
     }
 
-    public function getExecutionTime(){
+    public function getExecutionTime()
+    {
         return microtime(true) - $this->startTime;
     }
 }

@@ -2,9 +2,11 @@
 
 namespace Application\Model;
 
-class User {
+class User
+{
 
-    public function get(){
+    public function get()
+    {
         return $this->db;
     }
 

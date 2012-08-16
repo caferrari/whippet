@@ -4,6 +4,7 @@ namespace Whippet\Exception;
 
 use Whippet\Exception;
 
-class ControllerNotFoundException Extends Exception {
+class ControllerNotFoundException Extends Exception
+{
 
 }

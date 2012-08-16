@@ -4,6 +4,7 @@ namespace Whippet\Exception;
 
 use Whippet\Exception;
 
-class ViewNotFoundException Extends Exception {
+class ViewNotFoundException Extends Exception
+{
 
 }

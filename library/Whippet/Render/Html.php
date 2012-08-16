@@ -11,14 +11,16 @@ use Whippet\Render\Renderizable,
 class Html implements Renderizable
 {
 
-    public function buildViewPath($view){
+    public function buildViewPath($view)
+    {
         $view = str_replace('\\', '/', $view);
         $view = uncamelize(str_replace('Controller', '', $view));
         $view = str_replace('/_', '/', $view);
         return $view;
     }
 
-    public function render(Request $request, Response $response){
+    public function render(Request $request, Response $response)
+    {
         if ($request->primary)
             $response->addHeader('Content-Type', 'text/html; charset=utf-8');
 

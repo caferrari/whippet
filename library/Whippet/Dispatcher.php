@@ -15,7 +15,8 @@ class Dispatcher
 
     private $request;
 
-    public function __construct($method, $url, $pars, $virtualRoot, $root, $config){
+    public function __construct($method, $url, $pars, $virtualRoot, $root, $config)
+    {
         $route = new Route();
         $request = $route->getRequest($url);
         $request->primary = true;
@@ -28,7 +29,8 @@ class Dispatcher
         $this->request = $request;
     }
 
-    public function dispatch(Whippet $fw){
+    public function dispatch(Whippet $fw)
+    {
         try{
             $this->request->fw = $fw;
             return $this->request->execute();

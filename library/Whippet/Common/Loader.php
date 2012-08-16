@@ -9,7 +9,7 @@
  * $loader->register('Application', '../app/', 'Application\\');
  * $loader->register('Whippet', './');
  *
- * @author	Carlos André Ferrari <carlos@ferrari.eti.br>
+ * @author Carlos André Ferrari <carlos@ferrari.eti.br>
  */
 
 namespace Whippet\Common;

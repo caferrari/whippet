@@ -8,7 +8,8 @@ use Whippet\Response,
 class Render
 {
 
-    public function render(Response $response){
+    public function render(Response $response)
+    {
         $class = '\\Whippet\\Render\\' . ucfirst($response->format);
 
         if (!class_exists($class))

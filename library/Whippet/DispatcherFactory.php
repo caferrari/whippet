@@ -7,7 +7,8 @@ use \Whippet\Dispatcher;
 class DispatcherFactory
 {
 
-    public function fromHttp(array $server, array $config = array()){
+    public function fromHttp(array $server, array $config = array())
+    {
 
         $config = $this->pushConfig($config);
         $root = str_replace(
@@ -38,7 +39,8 @@ class DispatcherFactory
         return str_replace('//', '/', "/$str/");
     }
 
-    public function pushConfig(array $config){
+    public function pushConfig(array $config)
+    {
 
         $default = array(
             'useEtags' => false,

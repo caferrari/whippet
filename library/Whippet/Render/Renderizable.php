@@ -3,7 +3,7 @@
 namespace Whippet\Render;
 
 use Whippet\Request,
-	Whippet\Response;
+    Whippet\Response;
 
 interface Renderizable
 {

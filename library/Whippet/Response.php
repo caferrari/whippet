@@ -10,32 +10,37 @@ use Whippet\Whippet,
 class Response
 {
 
-    var $request;
-    var $code = 200;
-    var $format = 'html';
-    var $headers = array();
-    var $output = '';
+    public $request;
+    public $code = 200;
+    public $format = 'html';
+    public $headers = array();
+    public $output = '';
 
-    public function __construct(Request $request){
+    public function __construct(Request $request)
+    {
         $this->request = $request;
         $this->addHeader('Content-Type', 'text/html; charset=utf-8');
     }
 
-    public function addHeader($name, $value){
+    public function addHeader($name, $value)
+    {
         $this->headers[$name] = $value;
     }
 
-    public function removeHeader($name){
+    public function removeHeader($name)
+    {
         if (isset($this->headers[$name]))
             unset ($this->headers[$name]);
     }
 
-    private function checkEtag(){
+    private function checkEtag()
+    {
         if (!$this->request->config->useEtags)
             return;
 
         $etag = sha1($this->output);
-        if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && $_SERVER['HTTP_IF_NONE_MATCH']==$etag){
+        if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && $_SERVER['HTTP_IF_NONE_MATCH']==$etag)
+        {
             $this->code = 304;
             $this->output = '';
         }
@@ -43,7 +48,8 @@ class Response
         $this->addHeader('Etag', $etag);
     }
 
-    public function renderHeaders(){
+    public function renderHeaders()
+    {
         if (!$this->request->primary) return;
 
         foreach ($this->headers as $header => $value)
@@ -52,7 +58,8 @@ class Response
         header('Whippet-LoadTime:' . $this->request->fw->getExecutionTime());
     }
 
-    public function render(){
+    public function render()
+    {
         $render = new Render();
         $this->checkEtag();
         $this->setResponseCode();
@@ -60,7 +67,8 @@ class Response
         return $this->output = $render->render($this);
     }
 
-    public function setResponseCode(){
+    public function setResponseCode()
+    {
         new Code($this->code);
     }
 

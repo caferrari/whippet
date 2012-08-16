@@ -5,11 +5,13 @@ namespace Whippet;
 class Exception extends \ErrorException
 {
 
-    public function register(){
+    public function register()
+    {
         set_error_handler(array($this, 'handler'));
     }
 
-    public function handler($errno, $errstr, $errfile, $errline){
+    public function handler($errno, $errstr, $errfile, $errline)
+    {
         header('Content-Type: text/plain');
         throw new self($errstr, $errno, 0, $errfile, $errline);
     }

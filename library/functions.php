@@ -1,26 +1,12 @@
 <?php
 
 /**
-* Redirect the response
-* @param    $destino    Destination url encoded with Link class
-* @param    $delay        Delay
-* @return    void
-*/
-function redirect($destiny="", $delay=0){
-    if (ajax){
-        $json = Json::getInstance();
-        $json->addPackage("redirect", urlencode($destino));
-        exit($json->render());
-    }else
-        exit("<html><head><meta http-equiv=\"refresh\" content=\"$delay;URL=$destiny\"></head><body></body></html>");
-}
-
-/**
 * Convert sala-de-imprensa to SalaDeImprensa
 * @param    $str        string
 * @return    string
 */
-function camelize($str='') {
+function camelize($str='')
+{
     return str_replace(' ', '', ucwords(str_replace(array('_', '-'), ' ', $str)));
 }
 
@@ -29,7 +15,8 @@ function camelize($str='') {
 * @param    $str        string
 * @return    string
 */
-function uncamelize($str=''){
+function uncamelize($str='')
+{
     return preg_replace('@^_+|_+$@', '', strtolower(preg_replace("/([A-Z])/", "_$1", $str)));
 }
 
@@ -38,7 +25,8 @@ function uncamelize($str=''){
 * @param    $var        mixed
 * @return   void
 */
-function d($var){
+function d($var)
+{
     var_dump($var);
     die();
 }
