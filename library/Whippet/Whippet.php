@@ -10,7 +10,6 @@ class Whippet
     protected $startTime;
 
     public function __construct(){
-        header('Content-Type: text/plain;');
         $this->startTime = microtime(true);
 
         $exception = new Exception();
