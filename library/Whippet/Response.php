@@ -29,18 +29,20 @@ class Response
 
     public function removeHeader($name)
     {
-        if (isset($this->headers[$name]))
+        if (isset($this->headers[$name])) {
             unset ($this->headers[$name]);
+        }
     }
 
     private function checkEtag()
     {
-        if (!$this->request->config->useEtags)
+        if (!$this->request->config->useEtags) {
             return;
+        }
 
         $etag = sha1($this->output);
-        if (isset($_SERVER['HTTP_IF_NONE_MATCH']) && $_SERVER['HTTP_IF_NONE_MATCH']==$etag)
-        {
+        if (isset($_SERVER['HTTP_IF_NONE_MATCH'])
+            && $_SERVER['HTTP_IF_NONE_MATCH']==$etag) {
             $this->code = 304;
             $this->output = '';
         }
@@ -50,10 +52,13 @@ class Response
 
     public function renderHeaders()
     {
-        if (!$this->request->primary) return;
+        if (!$this->request->primary) {
+            return;
+        }
 
-        foreach ($this->headers as $header => $value)
+        foreach ($this->headers as $header => $value) {
             header("$header: $value");
+        }
 
         header('Whippet-LoadTime:' . $this->request->fw->getExecutionTime());
     }

@@ -4,7 +4,7 @@ namespace Whippet\Exception;
 
 use Whippet\Exception;
 
-class InvalidHttpResponseCodeException Extends Exception
+class InvalidHttpResponseCodeException extends Exception
 {
 
 }

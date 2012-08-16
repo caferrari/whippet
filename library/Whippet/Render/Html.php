@@ -21,17 +21,21 @@ class Html implements Renderizable
 
     public function render(Request $request, Response $response)
     {
-        if ($request->primary)
+        if ($request->primary) {
             $response->addHeader('Content-Type', 'text/html; charset=utf-8');
+        }
 
         ob_start();
 
-        $view = "{$request->controller}/{$request->action}." . $request->config->viewEngine;
+        $view = "{$request->controller}/{$request->action}."
+                . $request->config->viewEngine;
+
         $view = $this->buildViewPath($view);
         $viewfile = $request->root . 'app/view/' . $view;
 
-        if (!file_exists($viewfile))
+        if (!file_exists($viewfile)) {
             throw new ViewNotFoundException("View \"$view\" not found");
+        }
 
         extract(Controller::$vars);
         include $viewfile;

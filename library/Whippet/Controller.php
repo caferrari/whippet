@@ -8,8 +8,8 @@ use Whippet\Request,
 abstract class Controller
 {
 
-    static $vars = array();
-    var $request;
+    public static $vars = array();
+    public $request;
 
     public final function __construct(Request $request)
     {
@@ -30,7 +30,7 @@ abstract class Controller
     {
         switch (true) {
             case $var == 'pars':
-                return (object)$this->request->pars;
+                return (object) $this->request->pars;
             case (substr($var, -5) == 'Model'):
                 return DataSource::inject(substr($var, 0, -5));
         }

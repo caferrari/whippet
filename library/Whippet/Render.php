@@ -12,8 +12,10 @@ class Render
     {
         $class = '\\Whippet\\Render\\' . ucfirst($response->format);
 
-        if (!class_exists($class))
-            throw new InvalidRenderFormatException("format {$response->format} is invalid");
+        if (!class_exists($class)) {
+            $msg = "format {$response->format} is invalid";
+            throw new InvalidRenderFormatException($msg);
+        }
 
         $renderObject = new $class();
         return $renderObject->render($response->request, $response);

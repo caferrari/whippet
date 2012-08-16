@@ -11,12 +11,12 @@ use Whippet\Whippet,
 class Request
 {
 
-    var $path;
-    var $controller = 'index';
-    var $action     = 'index';
-    var $pars       = array();
-    var $primary = false;
-    var $response;
+    public $path;
+    public $controller = 'index';
+    public $action     = 'index';
+    public $pars       = array();
+    public $primary = false;
+    public $response;
 
     public function __construct($path, array $pars = array())
     {
@@ -50,15 +50,17 @@ class Request
 
         $class = "Application\\Controller\\{$this->controller}";
 
-        if (!class_exists($class))
-            throw new ControllerNotFoundException("Controller {$this->controller} not found");
-
-        if (!method_exists($class, $controllerMethod))
-            throw new ActionNotFoundException("Action {$this->action} not found");
-
+        if (!class_exists($class)) {
+            $msg = "Controller {$this->controller} not found";
+            throw new ControllerNotFoundException($msg);
+        }
+        if (!method_exists($class, $controllerMethod)) {
+            $msg = "Action {$this->action} not found";
+            throw new ActionNotFoundException($msg);
+        }
         $c = new $class($this);
         $c->request = $this;
-        $c->pars = (object)$this->pars;
+        $c->pars = (object) $this->pars;
         $c->$controllerMethod();
 
         return $this->response;

@@ -21,16 +21,15 @@ class DispatcherFactory
                             '/',
                             $root);
 
-        $uri = trim(preg_replace(
-                            "@^{$virtualroot}@",
-                            '',
-                            parse_url($server['REQUEST_URI'], PHP_URL_PATH)), '/');
+        $tmp = parse_url($server['REQUEST_URI'], PHP_URL_PATH);
+        $uri = trim(preg_replace("@^{$virtualroot}@", '', $tmp), '/');
 
         parse_str($server['QUERY_STRING'], $pars);
 
         $method = $server['REQUEST_METHOD'];
 
-        return new Dispatcher($method, $uri, $pars, $virtualroot, $root, $config);
+        return new Dispatcher($method, $uri, $pars,
+                              $virtualroot, $root, $config);
 
     }
 
@@ -48,6 +47,6 @@ class DispatcherFactory
             'viewEngine' => 'phtml'
         );
 
-        return (object)array_merge($default, $config);
+        return (object) array_merge($default, $config);
     }
 }

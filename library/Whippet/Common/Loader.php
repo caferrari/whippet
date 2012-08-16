@@ -16,16 +16,21 @@ namespace Whippet\Common;
 
 class Loader
 {
+
     public function register($namespace, $folder, $remove = '')
     {
         spl_autoload_register(
-            function($classname) use ($folder, $namespace, $remove){
-                if (false == strstr($classname, $namespace)) return;
+            function ($classname) use ($folder, $namespace, $remove) {
+                if (false == strstr($classname, $namespace)) {
+                    return;
+                }
                 $classname = str_replace($remove, '', $classname);
                 $file = str_replace('\\', DIRECTORY_SEPARATOR, $classname);
-                if (file_exists($path = $folder . $file . '.php'))
-                    require_once $path;
+                if (file_exists($path = $folder . $file . '.php')) {
+                    include_once $path;
+                }
             }
         );
     }
+
 }

@@ -16,8 +16,9 @@ class Code
 
     public function __construct($code)
     {
-        if (!isset($this->codes[$code]))
+        if (!isset($this->codes[$code])) {
             throw new InvalidHttpResponseCodeException($code);
+        }
 
         header ($this->codes[$code]);
     }

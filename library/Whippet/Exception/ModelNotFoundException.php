@@ -4,7 +4,7 @@ namespace Whippet\Exception;
 
 use Whippet\Exception;
 
-class ModelNotFoundException Extends Exception
+class ModelNotFoundException extends Exception
 {
 
 }

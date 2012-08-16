@@ -4,7 +4,7 @@ namespace Whippet\Exception;
 
 use Whippet\Exception;
 
-class InvalidRenderFormatException Extends Exception
+class InvalidRenderFormatException extends Exception
 {
 
 }

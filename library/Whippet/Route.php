@@ -33,12 +33,14 @@ class Route
         $path = array('index', 'index');
 
         foreach ($parts as $k => $part) {
-            if ($this->isParameter($part))
+            if ($this->isParameter($part)) {
                 break;
+            }
             $path[$k] = array_shift($parts);
         }
 
-        $path = implode('\\', array_map(function($val){ return camelize($val); }, $path));
+        $path = implode('\\', array_map(
+                function ($val){ return camelize($val); }, $path));
 
         return new Request($path,
                         $this->extractParameters(implode('/', $parts))
@@ -48,7 +50,10 @@ class Route
     private function extractParameters($uri)
     {
         $pars = array();
-        preg_match_all('@([a-z0-9A-Z]+):([^/]+)@', $uri, $match, PREG_SET_ORDER);
+        preg_match_all('@([a-z0-9A-Z]+):([^/]+)@',
+                        $uri, $match, PREG_SET_ORDER
+                       );
+
         foreach ($match as $mat) {
             list(, $name, $value) = $mat;
             $pars[$name] = rawurldecode($value);
