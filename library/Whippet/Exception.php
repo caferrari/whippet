@@ -1,6 +1,6 @@
 <?php
 
-namespace Vortice;
+namespace Whippet;
 
 class Exception extends \ErrorException
 {

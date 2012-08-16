@@ -4,15 +4,15 @@
  * Simple loader class
  *
  * Usage:
- * $loader = new Vortice\Common\Loader();
+ * $loader = new Whippet\Common\Loader();
  * $loader->register('Zend', './Zend/');
  * $loader->register('Application', '../app/', 'Application\\');
- * $loader->register('Vortice', './');
+ * $loader->register('Whippet', './');
  *
  * @author	Carlos André Ferrari <carlos@ferrari.eti.br>
  */
 
-namespace Vortice\Common;
+namespace Whippet\Common;
 
 class Loader
 {

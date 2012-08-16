@@ -1,10 +1,10 @@
 <?php
 
-namespace Vortice;
+namespace Whippet;
 
-use Vortice\Dispatcher;
+use Whippet\Dispatcher;
 
-class Vortice
+class Whippet
 {
 
     protected $startTime;

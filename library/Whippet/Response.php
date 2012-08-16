@@ -1,11 +1,11 @@
 <?php
 
-namespace Vortice;
+namespace Whippet;
 
-use Vortice\Vortice,
-    Vortice\Render,
-    Vortice\Request,
-    Vortice\Response\Code;
+use Whippet\Whippet,
+    Whippet\Render,
+    Whippet\Request,
+    Whippet\Response\Code;
 
 class Response
 {
@@ -49,7 +49,7 @@ class Response
         foreach ($this->headers as $header => $value)
             header("$header: $value");
 
-        header('Vortice-LoadTime:' . $this->request->fw->getExecutionTime());
+        header('Whippet-LoadTime:' . $this->request->fw->getExecutionTime());
     }
 
     public function render(){

@@ -1,15 +1,15 @@
 <?php
 
-namespace Vortice;
+namespace Whippet;
 
-use Vortice\Response,
-    Vortice\Exception\InvalidRenderFormatException;
+use Whippet\Response,
+    Whippet\Exception\InvalidRenderFormatException;
 
 class Render
 {
 
     public function render(Response $response){
-        $class = '\\Vortice\\Render\\' . ucfirst($response->format);
+        $class = '\\Whippet\\Render\\' . ucfirst($response->format);
 
         if (!class_exists($class))
             throw new InvalidRenderFormatException("format {$response->format} is invalid");

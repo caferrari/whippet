@@ -1,11 +1,11 @@
 <?php
 
-namespace Vortice;
+namespace Whippet;
 
-use Vortice\Request,
-    Vortice\Environment,
-    Vortice\Route,
-    Vortice\Vortice;
+use Whippet\Request,
+    Whippet\Environment,
+    Whippet\Route,
+    Whippet\Whippet;
 
 /**
  * Dispatch the request
@@ -28,7 +28,7 @@ class Dispatcher
         $this->request = $request;
     }
 
-    public function dispatch(Vortice $fw){
+    public function dispatch(Whippet $fw){
         try{
             $this->request->fw = $fw;
             return $this->request->execute();

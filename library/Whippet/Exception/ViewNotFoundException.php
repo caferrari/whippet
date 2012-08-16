@@ -1,8 +1,8 @@
 <?php
 
-namespace Vortice\Exception;
+namespace Whippet\Exception;
 
-use Vortice\Exception;
+use Whippet\Exception;
 
 class ViewNotFoundException Extends Exception {
 

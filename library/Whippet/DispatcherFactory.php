@@ -1,8 +1,8 @@
 <?php
 
-namespace Vortice;
+namespace Whippet;
 
-use \Vortice\Dispatcher;
+use \Whippet\Dispatcher;
 
 class DispatcherFactory
 {
@@ -11,7 +11,7 @@ class DispatcherFactory
 
         $config = $this->pushConfig($config);
         $root = str_replace(
-                            'lib/bootstrap.php',
+                            'library/bootstrap.php',
                             '',
                             $server['SCRIPT_FILENAME']);
 

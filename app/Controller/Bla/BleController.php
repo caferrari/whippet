@@ -2,7 +2,7 @@
 
 namespace Application\Controller\Bla;
 
-class BleController extends \Vortice\Controller
+class BleController extends \Whippet\Controller
 {
 
     public function index(){

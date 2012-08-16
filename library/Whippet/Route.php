@@ -1,8 +1,8 @@
 <?php
 
-namespace Vortice;
+namespace Whippet;
 
-use Vortice\Request;
+use Whippet\Request;
 
 class Route
 {

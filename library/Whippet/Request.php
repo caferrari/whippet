@@ -1,12 +1,12 @@
 <?php
 
-namespace Vortice;
+namespace Whippet;
 
-use Vortice\Vortice,
-    Vortice\Environment,
-    Vortice\Response,
-    Vortice\Exception\ControllerNotFoundException,
-    Vortice\Exception\ActionNotFoundException;
+use Whippet\Whippet,
+    Whippet\Environment,
+    Whippet\Response,
+    Whippet\Exception\ControllerNotFoundException,
+    Whippet\Exception\ActionNotFoundException;
 
 class Request
 {

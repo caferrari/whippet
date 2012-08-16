@@ -6,13 +6,13 @@
 * @param    $delay        Delay
 * @return    void
 */
-function redirect($destino="", $delay=0){
+function redirect($destiny="", $delay=0){
     if (ajax){
         $json = Json::getInstance();
         $json->addPackage("redirect", urlencode($destino));
         exit($json->render());
     }else
-        exit("<html><head><meta http-equiv=\"refresh\" content=\"$delay;URL=$destino\"></head><body></body></html>");
+        exit("<html><head><meta http-equiv=\"refresh\" content=\"$delay;URL=$destiny\"></head><body></body></html>");
 }
 
 /**

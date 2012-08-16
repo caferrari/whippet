@@ -1,9 +1,9 @@
 <?php
 
-namespace Vortice\Render;
+namespace Whippet\Render;
 
-use Vortice\Request,
-	Vortice\Response;
+use Whippet\Request,
+	Whippet\Response;
 
 interface Renderizable
 {

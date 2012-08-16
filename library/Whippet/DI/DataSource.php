@@ -1,8 +1,8 @@
 <?php
 
-namespace Vortice\DI;
+namespace Whippet\DI;
 
-use Vortice\Exception\ModelNotFoundException;
+use Whippet\Exception\ModelNotFoundException;
 
 class DataSource {
 

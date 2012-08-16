@@ -1,12 +1,12 @@
 <?php
 
-namespace Vortice\Render;
+namespace Whippet\Render;
 
-use Vortice\Render\Renderizable,
-    Vortice\Request,
-    Vortice\Response,
-    Vortice\Controller,
-    Vortice\Exception\ViewNotFoundException;
+use Whippet\Render\Renderizable,
+    Whippet\Request,
+    Whippet\Response,
+    Whippet\Controller,
+    Whippet\Exception\ViewNotFoundException;
 
 class Html implements Renderizable
 {

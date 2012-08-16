@@ -1,8 +1,8 @@
 <?php
 
-namespace Vortice\Response;
+namespace Whippet\Response;
 
-use Vortice\Exception\InvalidHttpResponseCodeException;
+use Whippet\Exception\InvalidHttpResponseCodeException;
 
 class Code
 {

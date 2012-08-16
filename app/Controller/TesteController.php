@@ -2,7 +2,7 @@
 
 namespace Application\Controller;
 
-class TesteController extends \Vortice\Controller
+class TesteController extends \Whippet\Controller
 {
 
     public function index(){

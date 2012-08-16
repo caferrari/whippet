@@ -1,9 +1,9 @@
 <?php
 
-namespace Vortice;
+namespace Whippet;
 
-use Vortice\Request,
-    Vortice\DI\DataSource;
+use Whippet\Request,
+    Whippet\DI\DataSource;
 
 abstract class Controller
 {
