@@ -18,7 +18,7 @@
 
     <filter>
         <whitelist>
-            <directory>library/</directory>
+            <directory>library/Whippet</directory>
         </whitelist>
     </filter>
 </phpunit>
