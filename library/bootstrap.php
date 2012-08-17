@@ -8,6 +8,5 @@ $loader = new Whippet\Common\Loader;
 $loader->register('Application', '../app/', 'Application\\');
 $loader->register('Whippet', './');
 
-
 $app = new Application\Application();
 $app->run();

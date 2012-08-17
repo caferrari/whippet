@@ -2,12 +2,10 @@
 
 namespace Application;
 
-use Whippet\DI\DataSource;
-
 class Application extends \Whippet\Application
 {
 
-    public function setUp()
+    public function setup()
     {
         $this->config = include '../app/config.php';
     }

@@ -15,9 +15,15 @@ abstract class Application
     final public function __construct()
     {
         $this->dataSource = new DataSource();
+        $this->setup();
     }
 
     abstract public function bootstrap();
+
+    public function setup()
+    {
+
+    }
 
     public function run()
     {
