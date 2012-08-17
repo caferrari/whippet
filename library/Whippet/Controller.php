@@ -23,7 +23,7 @@ abstract class Controller
 
     public function __set($var, $value)
     {
-        self::$vars[$var] = $value;
+        return $this->request->response->data[$var] = $value;
     }
 
     public function __get($var)

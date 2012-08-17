@@ -20,6 +20,34 @@ class Html implements Renderizable
         return $view;
     }
 
+    public function execFile($file, Request $request) {
+        ob_start();
+        $response = $request->response;
+        extract($response->data);
+        include $file;
+        return ob_get_clean();
+    }
+
+    public function loadLayout(Request $request) {
+        $viewEngine = $request->config->viewEngine;
+
+        if (in_array($viewEngine, array('php', 'phtml'))) {
+            $layout = $request->response->layout;
+            $file = "{$request->root}app/layout/{$layout}.{$viewEngine}";
+
+            if (!file_exists($file)) {
+                $msg = "Layout file {$layout}.{$viewEngine} does not found
+                        in {$request->root}app/layout/ folder";
+                throw new LayoutException($msg);
+            }
+
+            return $this->execFile($file, $request);
+        }
+
+        throw new LayoutException("{$viewEngine} does not support layouts");
+
+    }
+
     public function render(Request $request, Response $response)
     {
         if ($request->primary) {
@@ -41,35 +69,9 @@ class Html implements Renderizable
             throw new ViewNotFoundException("View \"$view\" not found");
         }
 
-        ob_start();
-        extract(Controller::$vars);
-        include $viewfile;
-        $view = ob_get_clean();
+        $view = $this->execFile($viewfile, $request);
 
         return str_replace('<!--content-->', $view, $layout);
-    }
-
-    private function loadLayout(Request $request) {
-        $viewEngine = $request->config->viewEngine;
-
-        if (in_array($viewEngine, array('php', 'phtml'))) {
-            $layout = $request->response->layout;
-            $file = "{$request->root}app/layout/{$layout}.{$viewEngine}";
-
-            if (!file_exists($file)) {
-                $msg = "Layout file {$layout}.{$viewEngine} does not found
-                        in {$request->root}app/layout/ folder";
-                throw new LayoutException($msg);
-            }
-
-            ob_start();
-            extract(Controller::$vars);
-            include $file;
-            return ob_get_clean();
-        }
-
-        throw new LayoutException("{$viewEngine} does not support layouts");
-
     }
 
 }
