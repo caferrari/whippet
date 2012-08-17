@@ -37,10 +37,10 @@ class Request
         $action = 'index';
         if (!class_exists($class . 'Controller')) {
             $lastPart = strrpos($path, '\\');
-            $action = lcfirst(camelize(substr($path, $lastPart+1)));
+            $action = lcfirst($this->camelize(substr($path, $lastPart+1)));
             $path = substr($path, 0, $lastPart);
         }
-        $this->controller = $path . 'Controller';
+        $this->controller = ucfirst($path . 'Controller');
         $this->action = $action;
     }
 
@@ -64,6 +64,11 @@ class Request
         $c->$controllerMethod();
 
         return $this->response;
+    }
+
+    public function camelize($str='')
+    {
+        return str_replace(' ', '', ucwords(str_replace(array('_', '-'), ' ', $str)));
     }
 
 }
