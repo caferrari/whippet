@@ -18,7 +18,7 @@ abstract class Controller
 
     public function loadModel($name)
     {
-        return DataSource::inject($name);
+        return $this->getDataSource()->inject($name);
     }
 
     public function __set($var, $value)
@@ -32,8 +32,18 @@ abstract class Controller
             case $var == 'pars':
                 return (object) $this->request->pars;
             case (substr($var, -5) == 'Model'):
-                return DataSource::inject(substr($var, 0, -5));
+                return $this->loadModel(substr($var, 0, -5));
         }
+    }
+
+    private function getDataSource()
+    {
+        return $this->getFw()->application->dataSource;
+    }
+
+    private function getFw()
+    {
+        return $this->request->fw;
     }
 
 }

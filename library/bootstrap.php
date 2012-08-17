@@ -8,10 +8,6 @@ $loader = new Whippet\Common\Loader;
 $loader->register('Application', '../app/', 'Application\\');
 $loader->register('Whippet', './');
 
-$config = include('../app/config.php');
 
-require_once '../app/bootstrap.php';
-
-$dispatcher = new Whippet\DispatcherFactory();
-$whippet = new Whippet\Whippet();
-$whippet->execute($dispatcher->fromHttp($_SERVER, $config));
+$app = new Application\Application();
+$app->run();
