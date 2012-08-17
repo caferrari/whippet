@@ -11,11 +11,12 @@ class Response
 {
 
     public $request;
-    public $code = 200;
-    public $format = 'html';
+    public $code    = 200;
+    public $format  = 'html';
     public $headers = array();
-    public $layout = 'default';
-    public $output = '';
+    public $layout  = 'default';
+    public $data    = array();
+    public $output  = '';
 
     public function __construct(Request $request)
     {
