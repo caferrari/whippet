@@ -14,7 +14,7 @@ class Route
 
     }
 
-    public static function add($regex, Request $target)
+    public function add($regex, Request $target)
     {
         self::$routes[$regex] = $target;
     }
@@ -39,8 +39,7 @@ class Route
             $path[$k] = array_shift($parts);
         }
 
-        $path = implode('\\', array_map(
-                function ($val){ return camelize($val); }, $path));
+        $path = implode('\\', array_map('camelize', $path));
 
         return new Request($path,
                         $this->extractParameters(implode('/', $parts))
