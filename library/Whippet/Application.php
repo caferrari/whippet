@@ -6,7 +6,7 @@ use Whippet\DI\DataSource,
     Whippet\DispatcherFactory,
     Whippet\Whippet;
 
-abstract class Application
+class Application
 {
 
     public $config = array();
@@ -18,7 +18,10 @@ abstract class Application
         $this->setup();
     }
 
-    abstract public function bootstrap();
+    public function bootstrap()
+    {
+
+    }
 
     public function setup()
     {
