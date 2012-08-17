@@ -6,7 +6,7 @@ class WhippetTest extends \PHPUnit_Framework_TestCase
 {
     function test_whippet_class_should_return_execution_time()
     {
-        $w = new Whippet;
+        $w = new Whippet(new Application);
         $this->assertTrue(is_numeric($w->getExecutionTime()));
     }
 }

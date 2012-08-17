@@ -4,16 +4,17 @@ namespace Whippet\DI;
 
 use Whippet\Exception\ModelNotFoundException;
 
-class DataSource {
+class DataSource
+{
 
-    public static $sources = array();
+    public $sources = array();
 
-    public static function add($name, $source)
+    public function add($name, $source)
     {
-        self::$sources[$name] = $source;
+        $this->sources[$name] = $source;
     }
 
-    public static function inject($class)
+    public function inject($class)
     {
         $class = "\\Application\\Model\\" . ucfirst($class);
         if (!class_exists($class)) {
@@ -21,7 +22,7 @@ class DataSource {
         }
 
         $target = new $class;
-        foreach (self::$sources as $name => $object) {
+        foreach ($this->sources as $name => $object) {
             $target->$name = $object;
         }
 
