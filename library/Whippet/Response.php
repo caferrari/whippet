@@ -14,6 +14,7 @@ class Response
     public $code = 200;
     public $format = 'html';
     public $headers = array();
+    public $layout = 'default';
     public $output = '';
 
     public function __construct(Request $request)

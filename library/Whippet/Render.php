@@ -17,7 +17,7 @@ class Render
             throw new InvalidRenderFormatException($msg);
         }
 
-        $renderObject = new $class();
+        $renderObject = new $class($response);
         return $renderObject->render($response->request, $response);
     }
 
