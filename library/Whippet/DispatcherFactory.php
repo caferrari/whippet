@@ -12,10 +12,9 @@ class DispatcherFactory
 
         $config = $this->pushConfig($config);
         $root = str_replace(
-                            'library/bootstrap.php',
+                            'whippet/bootstrap.php',
                             '',
                             $server['SCRIPT_FILENAME']);
-
         $virtualroot = str_replace(
                             $this->addSlashes($server['DOCUMENT_ROOT']),
                             '/',

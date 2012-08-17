@@ -2,5 +2,5 @@
     RewriteEngine On
     #RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ ../../library/bootstrap.php [QSA,L]
+    RewriteRule ^(.*)$ ../../whippet/bootstrap.php [QSA,L]
 </IfModule>
