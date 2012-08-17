@@ -11,6 +11,9 @@ class Whippet
 
     public function __construct()
     {
+        if (!headers_sent()) {
+            header('Content-Type: text/plain; charset=utf-8');
+        }
         $this->startTime = microtime(true);
         $exception = new Exception();
         $exception->register();
