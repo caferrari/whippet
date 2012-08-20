@@ -39,22 +39,25 @@ class Route
             $path[$k] = array_shift($parts);
         }
 
-        $path = implode('\\', array_map(function ($str) {
-            return preg_replace('@^_+|_+$@', '',
-                   strtolower(preg_replace("/([A-Z])/", "_$1", $str)));
-        }, $path));
+        $path = implode('/', array_map(
+            function ($str) {
+                return lcfirst(camelize($str));
+            }, $path)
+        );
 
-        return new Request($path,
-                        $this->extractParameters(implode('/', $parts))
-                   );
+        return new Request(
+            $path,
+            $this->extractParameters(implode('/', $parts))
+        );
     }
 
     private function extractParameters($uri)
     {
         $pars = array();
-        preg_match_all('@([a-z0-9A-Z]+):([^/]+)@',
-                        $uri, $match, PREG_SET_ORDER
-                       );
+        preg_match_all(
+            '@([a-z0-9A-Z]+):([^/]+)@',
+            $uri, $match, PREG_SET_ORDER
+        );
 
         foreach ($match as $mat) {
             list(, $name, $value) = $mat;

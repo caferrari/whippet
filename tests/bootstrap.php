@@ -1,7 +1,10 @@
 <?php
 
 date_default_timezone_set('UTC');
+//include '../whippeth/functions.php';
 set_include_path('library' . PATH_SEPARATOR . get_include_path());
+
+include (dirname(dirname(__FILE__)) . '/whippet/functions.php');
 
 spl_autoload_register(
     function($className) {
