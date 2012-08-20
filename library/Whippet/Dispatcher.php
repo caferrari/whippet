@@ -13,7 +13,7 @@ use Whippet\Request,
 class Dispatcher
 {
 
-    private $request;
+    public $request;
 
     public function __construct($method, $url, $pars,
                                 $virtualRoot, $root, $config)

@@ -39,7 +39,10 @@ class Route
             $path[$k] = array_shift($parts);
         }
 
-        $path = implode('\\', array_map('camelize', $path));
+        $path = implode('\\', array_map(function ($str) {
+            return preg_replace('@^_+|_+$@', '',
+                   strtolower(preg_replace("/([A-Z])/", "_$1", $str)));
+        }, $path));
 
         return new Request($path,
                         $this->extractParameters(implode('/', $parts))
