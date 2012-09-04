@@ -1,10 +1,7 @@
 {
     "name": "WhippetPHP",
-    "description": "Thin, fast and gorgeous. The dog I mean",
-    "version": "0.0.1",
+    "description": "Thin and fast framework",
     "type": "library",
-    "time": "2012-08-15 13:10:00",
-    "homepage": "",
     "license": "BSD Style",
     "authors": [
         {
