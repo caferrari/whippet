@@ -1,5 +1,5 @@
 {
-    "name": "WhippetPHP",
+    "name": "caferrari\/WhippetPHP",
     "description": "Thin and fast framework",
     "type": "library",
     "license": "BSD Style",
